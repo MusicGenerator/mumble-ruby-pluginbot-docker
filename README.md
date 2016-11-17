@@ -23,6 +23,7 @@ You need to specify the volumes "/home/botmaster/music" and "/home/botmaster/tem
     docker run -d -t --name bot1 \ 
      -v /somehostfolder/music:/home/botmaster/music \
      -v /somehostfolder/temp:/home/botmaster/temp \ 
+     -v /somehostfolder/certs:/home/botmaster/certs \ 
      -e MUMBLE_USERNAME="MRPB_Docker_BOT" \ 
      -e MUMBLE_BITRATE="60000" \ 
      -e MUMBLE_HOST="m.natenom.com" \ 

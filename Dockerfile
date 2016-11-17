@@ -2,6 +2,8 @@ FROM debian:jessie
 MAINTAINER Natenom <natenom@natenom.com>
 #EXPOSE 7701
 
+LABEL version="1.0"
+
 ENV MUMBLE_HOST="m.natenom.com"
 ENV MUMBLE_PORT="64738"
 ENV MUMBLE_USERNAME="MRPB_Dockerized"
@@ -23,7 +25,7 @@ USER botmaster
 WORKDIR /home/botmaster/
 
 RUN mkdir ~/src
-RUN mkdir ~/src/certs
+#RUN mkdir ~/src/certs
 #RUN mkdir ~/music
 RUN mkdir ~/temp
 RUN mkdir -p ~/mpd1/playlists
@@ -96,3 +98,4 @@ RUN chmod u+x ~/src/youtube-dl
 ENTRYPOINT [ "/home/botmaster/src/mumble-ruby-pluginbot/scripts/startasdocker.sh" ]
 VOLUME /home/botmaster/music/
 VOLUME /home/botmaster/temp/
+VOLUME /home/botmaster/certs/
