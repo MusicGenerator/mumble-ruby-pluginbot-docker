@@ -79,7 +79,8 @@ RUN chmod a+x /home/botmaster/startasdocker.sh
 RUN cp templates/override_config.yml ~/src/bot1_conf.yml
 
 #10 Set up MPD (Music Player Daemon)
-RUN cp ~/src/mumble-ruby-pluginbot/templates/mpd.conf ~/mpd1/mpd.conf
+ADD conf/mpd.conf ~/mpd1/mpd.conf
+#RUN cp ~/src/mumble-ruby-pluginbot/templates/mpd.conf ~/mpd1/mpd.conf
 
 USER root
 # We need extra repositories for lib-av
