@@ -6,6 +6,9 @@ The bot uses the current devel branch with many new features compared to the mas
 ## Ports
 Port 7701 is exposed.
 
+Use for example "-p 127.0.0.1:7701:7701" to bind it to localhost inside of the host only.
+
+
 ## ENV variabled
 See Dockerfile for all variables.
 
