@@ -1,4 +1,4 @@
-## Mumble-Ruby-Pluginbot
+## Mumble-Ruby-Pluginbot-Docker
 This is a dockerized music bot named [Mumble-Ruby-Pluginbot](https://github.com/dafoxia/mumble-ruby-pluginbot). It contains the bot itself and a MPD server.
 
 The bot uses the current devel branch with many new features compared to the master branch.
