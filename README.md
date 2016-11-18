@@ -46,3 +46,7 @@ In that case modify this Dockerfile and add your own override configuration from
 
 ## Playlists, state
 The playlists are stored within the container, not in the volumes.
+
+## Notes
+The Dockerfile is mainly a script made from the documentation you can find at https://wiki.natenom.com/w/Installation_of_mumble-ruby-pluginbot_YAML.
+
