@@ -74,8 +74,8 @@ WORKDIR /home/botmaster/src/
 RUN git clone https://github.com/dafoxia/mumble-ruby-pluginbot.git
 WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
 RUN git checkout -b devel origin/devel
-#ADD conf/bot1_conf.yml /home/botmaster/src/bot1_conf.yml
-RUN chmod a+x /home/botmaster/src/mumble-ruby-pluginbot/scripts/startasdocker.sh
+ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
+RUN chmod a+x /home/botmaster/startasdocker.sh
 RUN cp templates/override_config.yml ~/src/bot1_conf.yml
 
 #10 Set up MPD (Music Player Daemon)
@@ -95,7 +95,7 @@ USER botmaster
 RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o ~/src/youtube-dl
 RUN chmod u+x ~/src/youtube-dl
 
-ENTRYPOINT [ "/home/botmaster/src/mumble-ruby-pluginbot/scripts/startasdocker.sh" ]
+ENTRYPOINT [ "/home/botmaster/startasdocker.sh" ]
 VOLUME /home/botmaster/music/
 VOLUME /home/botmaster/temp/
 VOLUME /home/botmaster/certs/
