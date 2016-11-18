@@ -1,6 +1,6 @@
 FROM debian:jessie
 MAINTAINER Natenom <natenom@natenom.com>
-#EXPOSE 7701
+EXPOSE 7701
 
 LABEL version="1.0"
 
