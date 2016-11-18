@@ -3,6 +3,9 @@ This is a dockerized music bot named [Mumble-Ruby-Pluginbot](https://github.com/
 
 The bot uses the current devel branch with many new features compared to the master branch.
 
+## Ports
+Port 7701 is exposed.
+
 ## ENV variabled
 See Dockerfile for all variables.
 
