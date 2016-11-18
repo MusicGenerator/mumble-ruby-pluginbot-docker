@@ -74,8 +74,12 @@ WORKDIR /home/botmaster/src/
 RUN git clone https://github.com/dafoxia/mumble-ruby-pluginbot.git
 WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
 RUN git checkout -b devel origin/devel
-ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
+
+USER root
+ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh 
 RUN chmod a+x /home/botmaster/startasdocker.sh
+
+USER botmaster
 RUN cp templates/override_config.yml ~/src/bot1_conf.yml
 
 #10 Set up MPD (Music Player Daemon)
