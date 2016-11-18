@@ -3,14 +3,14 @@ This is a dockerized music bot named [Mumble-Ruby-Pluginbot](https://github.com/
 
 The bot uses the current devel branch with many new features compared to the master branch.
 
-## Todo
-Decide whether or not to expose 7701 to be able to control the MPD. If so we need to change mpd config to allow non localhost access.
-
 ## ENV variabled
 See Dockerfile for all variables.
 
 ## Volumes
-You need to specify the volumes "/home/botmaster/music" and "/home/botmaster/temp".
+You need to specify the volumes:
+"/home/botmaster/music"
+"/home/botmaster/temp"
+"/home/botmaster/certs"
 
 ## Build it
 ```
@@ -33,7 +33,10 @@ You need to specify the volumes "/home/botmaster/music" and "/home/botmaster/tem
      mumblerubypluginbot
 ```
 
-If you omit all -e variables the bot connects to m.natenom.com.
+If you omit all -e variables the bot connects to m.natenom.com into our Bottest channel.
+
+## If you need more configuration options for the bot
+In that case modify this Dockerfile and add your own override configuration from the templates directory of [Mumble-Ruby-Pluginbot](https://github.com/dafoxia/mumble-ruby-pluginbot).
 
 ## Playlists, state
 The playlists are stored within the container, not in the volumes.
