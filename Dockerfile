@@ -19,7 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN adduser --quiet --disabled-password --system --home /home/botmaster --shell /bin/bash botmaster
+RUN adduser --quiet --disabled-password --uid 1000 --home /home/botmaster --shell /bin/bash botmaster
 
 USER botmaster
 WORKDIR /home/botmaster/
