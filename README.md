@@ -41,8 +41,11 @@ You need to specify the volumes:
 
 If you omit all -e variables the bot connects to m.natenom.com into our Bottest channel.
 
-## Configure the bot
-See conf/override_config.yml and conf/mpd.conf
+## Configure mumble-ruby-pluginbot
+See conf/override_config.yml which is an override config. That means you only need to add settings you want to be overwritten.
+
+## Configure mpd
+See conf/mpd.conf which is the complete configuration file.
 
 ## Playlists, state
 The playlists are stored within the container, not in the volumes.
