@@ -1,0 +1,35 @@
+---
+
+config:
+  version: 2.1
+
+:debug: true
+:language: en
+
+main:
+  ducking: false
+  automute_if_alone: true
+  stop_on_unregistered: true
+  control:
+    string: "."
+    message:
+      private_only: false
+      registered_only: true
+    historysize: 20
+  fifo: "/home/botmaster/mpd1/mpd.fifo"
+  superpassword: "kaguBe gave me all the power and I want to "
+
+mumble:
+  use_vbr: 1
+  bitrate: 72000
+  host: m.natenom.com
+  port: 64738
+  name: MumbleRubyPluginbot
+  password: ''
+  channel: Bottest
+
+plugin:
+    mpd:
+      volume: 65
+      host: localhost
+      port: 7701

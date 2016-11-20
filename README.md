@@ -41,8 +41,8 @@ You need to specify the volumes:
 
 If you omit all -e variables the bot connects to m.natenom.com into our Bottest channel.
 
-## If you need more configuration options for the bot
-In that case modify this Dockerfile and add your own override configuration from the templates directory of [Mumble-Ruby-Pluginbot](https://github.com/dafoxia/mumble-ruby-pluginbot).
+## Configure the bot
+See conf/override_config.yml and conf/mpd.conf
 
 ## Playlists, state
 The playlists are stored within the container, not in the volumes.

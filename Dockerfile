@@ -80,7 +80,7 @@ ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
 RUN chmod a+x /home/botmaster/startasdocker.sh
 
 USER botmaster
-RUN cp templates/override_config.yml /home/botmaster/src/bot1_conf.yml
+ADD conf/override_config.yml /home/botmaster/src/bot1_conf.yml
 
 #10 Set up MPD (Music Player Daemon)
 ADD conf/mpd.conf /home/botmaster/mpd1/mpd.conf
