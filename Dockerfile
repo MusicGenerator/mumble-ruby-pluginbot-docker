@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Natenom <natenom@natenom.com>
 EXPOSE 7701
 
-LABEL version="1.0"
+LABEL version="1.1"
 
 ENV MUMBLE_HOST="m.natenom.com"
 ENV MUMBLE_PORT="64738"
@@ -11,13 +11,18 @@ ENV MUMBLE_PASSWORD="supersecretpassword"
 ENV MUMBLE_CHANNEL="Bottest"
 ENV MUMBLE_BITRATE="72000"
 
+# We need extra repositories for lib-av
+RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list.d/nonfree.list
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     apt-get --no-install-recommends -qy install curl libyaml-dev git libopus-dev \
     build-essential zlib1g zlib1g-dev libssl-dev mpd mpc tmux \
     automake autoconf libtool libogg-dev psmisc util-linux libgmp3-dev \
-    dialog unzip ca-certificates aria2 \
+    dialog unzip ca-certificates aria2 imagemagick libav-tools python \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN ln -s /usr/bin/avconv /usr/bin/ffmpeg
 
 RUN adduser --quiet --disabled-password --uid 1000 --home /home/botmaster --shell /bin/bash botmaster
 
@@ -85,16 +90,6 @@ ADD conf/override_config.yml /home/botmaster/src/bot1_conf.yml
 #10 Set up MPD (Music Player Daemon)
 ADD conf/mpd.conf /home/botmaster/mpd1/mpd.conf
 #RUN cp ~/src/mumble-ruby-pluginbot/templates/mpd.conf ~/mpd1/mpd.conf
-
-USER root
-# We need extra repositories for lib-av
-RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list.d/nonfree.list
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    apt-get --no-install-recommends -qy install \
-    imagemagick libav-tools python \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN ln -s /usr/bin/avconv /usr/bin/ffmpeg
 
 USER botmaster
 RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o ~/src/youtube-dl
