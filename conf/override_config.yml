@@ -18,6 +18,7 @@ main:
     historysize: 20
   fifo: "/home/botmaster/mpd1/mpd.fifo"
   superpassword: "kaguBe gave me all the power and I want to "
+  blacklisted_commands: "settings set superpassword"
 
 mumble:
   use_vbr: 1
