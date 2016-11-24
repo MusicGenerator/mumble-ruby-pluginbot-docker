@@ -18,7 +18,7 @@ main:
     historysize: 20
   fifo: "/home/botmaster/mpd1/mpd.fifo"
   superpassword: "kaguBe gave me all the power and I want to "
-  blacklisted_commands: "settings set superpassword debug bind unbind blacklist register bitrate mpdconfig mpdcommands mpdnotcommands mpddecoders"
+  blacklisted_commands: "settings set debug bind unbind blacklist register bitrate mpdconfig mpdcommands mpdnotcommands mpddecoders"
 
 mumble:
   use_vbr: 1
