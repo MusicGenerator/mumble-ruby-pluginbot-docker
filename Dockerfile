@@ -30,6 +30,7 @@ USER botmaster
 WORKDIR /home/botmaster/
 
 RUN mkdir ~/src
+RUN mkdir ~/logs
 #RUN mkdir ~/src/certs
 #RUN mkdir ~/music
 RUN mkdir ~/temp
