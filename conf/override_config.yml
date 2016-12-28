@@ -34,3 +34,4 @@ plugin:
       volume: 65
       host: localhost
       port: 7701
+      testpipe: false
