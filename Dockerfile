@@ -77,7 +77,7 @@ RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \
 
 #9 Download and set up mumble-ruby-pluginbot
 WORKDIR /home/botmaster/src/
-RUN git clone https://github.com/dafoxia/mumble-ruby-pluginbot.git
+RUN git clone https://github.com/MusicGenerator/mumble-ruby-pluginbot.git
 WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
 RUN git checkout -b devel origin/devel
 
