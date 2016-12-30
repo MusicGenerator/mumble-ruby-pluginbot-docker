@@ -1,5 +1,5 @@
 ## Mumble-Ruby-Pluginbot-Docker
-This is a dockerized music bot named [Mumble-Ruby-Pluginbot](https://github.com/dafoxia/mumble-ruby-pluginbot). It contains the bot itself and a MPD server.
+This is a dockerized music bot named [Mumble-Ruby-Pluginbot](https://github.com/MusicGenerator/mumble-ruby-pluginbot). It contains the bot itself and an MPD server.
 
 The bot uses the current devel branch with many new features compared to the master branch.
 
@@ -26,16 +26,16 @@ You need to specify the volumes:
 ## Running the Bot
 
 ```
-    docker run -d -t --name bot1 \ 
+    docker run -d -t --name bot1 \
      -v /somehostfolder/music:/home/botmaster/music \
-     -v /somehostfolder/temp:/home/botmaster/temp \ 
-     -v /somehostfolder/certs:/home/botmaster/certs \ 
-     -e MUMBLE_USERNAME="MRPB_Docker_BOT" \ 
-     -e MUMBLE_BITRATE="60000" \ 
-     -e MUMBLE_HOST="m.natenom.com" \ 
-     -e MUMBLE_PORT="64738" \ 
-     -e MUMBLE_CHANNEL="Bottest" \ 
-     -e MUMBLE_PASSWORD="supersecretpw" \ 
+     -v /somehostfolder/temp:/home/botmaster/temp \
+     -v /somehostfolder/certs:/home/botmaster/certs \
+     -e MUMBLE_USERNAME="MRPB_Docker_BOT" \
+     -e MUMBLE_BITRATE="60000" \
+     -e MUMBLE_HOST="m.natenom.com" \
+     -e MUMBLE_PORT="64738" \
+     -e MUMBLE_CHANNEL="Bottest" \
+     -e MUMBLE_PASSWORD="supersecretpw" \
      mumblerubypluginbot
 ```
 
@@ -51,5 +51,4 @@ See conf/mpd.conf which is the complete configuration file.
 The playlists are stored within the container, not in the volumes.
 
 ## Notes
-The Dockerfile is mainly a script made from the documentation you can find at https://wiki.natenom.com/w/Installation_of_mumble-ruby-pluginbot_YAML.
-
+The Dockerfile is mainly a script made from the documentation you can find at http://mumble-ruby-pluginbot.readthedocs.io/en/latest/installation_howto.html.
