@@ -52,3 +52,10 @@ The playlists are stored within the container, not in the volumes.
 
 ## Notes
 The Dockerfile is mainly a script made from the documentation you can find at http://mumble-ruby-pluginbot.readthedocs.io/en/latest/installation_howto.html.
+
+## Docker commands for the bot
+### Watching the log
+
+    docker exec -t -i container_name tail -n1 -f /home/botmaster/logs/bot1.log
+
+### FIXME...
