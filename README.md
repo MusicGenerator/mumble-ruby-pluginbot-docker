@@ -51,7 +51,7 @@ See conf/mpd.conf which is the complete configuration file.
 The playlists are stored within the container, not in the volumes.
 
 ## Notes
-The Dockerfile is mainly a script made from the documentation you can find at http://mumble-ruby-pluginbot.readthedocs.io/en/latest/installation_howto.html.
+The Dockerfile is mainly a script made from the documentation you can find at http://mumble-ruby-pluginbot.readthedocs.io/en/master/installation_howto.html.
 
 ## Docker commands for the bot
 ### Watching the log
