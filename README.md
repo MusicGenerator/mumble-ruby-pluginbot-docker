@@ -3,6 +3,11 @@ This is a dockerized music bot named [Mumble-Ruby-Pluginbot](https://github.com/
 
 The bot uses the current devel branch with many new features compared to the master branch.
 
+## Debian or Ubuntu?
+This dockerfile works both with Debian and Ubuntu. It was originally created for Debian but then changed a little to work with Ubuntu also because Ubuntu uses a more recent version of MPD. If you experience problems where the bot disconnects when handling radio streams you should use Ubuntu as an image, see first line of the Dockerfile.
+
+The default is Ubuntu though.
+
 ## Ports
 Port 7701 is exposed.
 

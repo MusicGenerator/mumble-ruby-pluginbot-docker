@@ -1,8 +1,11 @@
+# Ubuntu works, but I prefer Debian :)
+#FROM ubuntu
 FROM debian:jessie
+
 MAINTAINER Natenom <natenom@natenom.com>
 EXPOSE 7701
 
-LABEL version="1.1"
+LABEL version="1.2"
 
 ENV MUMBLE_HOST="m.natenom.com"
 ENV MUMBLE_PORT="64738"
@@ -22,7 +25,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN ln -s /usr/bin/avconv /usr/bin/ffmpeg
+# Fix for ubuntu...
+RUN test -f /usr/bin/ffmpeg || ln -s /usr/bin/avconv /usr/bin/ffmpeg
 
 RUN adduser --quiet --disabled-password --uid 1000 --home /home/botmaster --shell /bin/bash botmaster
 
