@@ -15,7 +15,7 @@ ENV MUMBLE_BITRATE="72000"
 RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list.d/nonfree.list
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
-    apt-get --no-install-recommends -qy install curl libyaml-dev git libopus-dev \
+    apt-get --allow-unauthenticated --no-install-recommends -qy install curl libyaml-dev git libopus-dev \
     build-essential zlib1g zlib1g-dev libssl-dev mpd mpc tmux \
     automake autoconf libtool libogg-dev psmisc util-linux libgmp3-dev \
     dialog unzip ca-certificates aria2 imagemagick libav-tools python \
@@ -42,11 +42,11 @@ RUN curl -L https://get.rvm.io | bash -s stable && /bin/bash -c "source ~/.rvm/s
 WORKDIR /home/botmaster/src
 RUN git clone https://github.com/dafoxia/mumble-ruby.git mumble-ruby
 WORKDIR /home/botmaster/src/mumble-ruby
-RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \ 
-    rvm use @bots && \ 
-    gem build mumble-ruby.gemspec && \ 
-    rvm @bots do gem install mumble-ruby-*.gem && \ 
-    rvm @bots do gem install ruby-mpd && \ 
+RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \
+    rvm use @bots && \
+    gem build mumble-ruby.gemspec && \
+    rvm @bots do gem install mumble-ruby-*.gem && \
+    rvm @bots do gem install ruby-mpd && \
     rvm @bots do gem install crack"
 
 #7 Download and set up celt-ruby and libcelt
@@ -82,7 +82,7 @@ WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
 RUN git checkout -b devel origin/devel
 
 USER root
-ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh 
+ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
 RUN chmod a+x /home/botmaster/startasdocker.sh
 
 USER botmaster
