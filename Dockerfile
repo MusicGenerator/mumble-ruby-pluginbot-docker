@@ -104,3 +104,4 @@ ENTRYPOINT [ "/home/botmaster/startasdocker.sh" ]
 VOLUME /home/botmaster/music/
 VOLUME /home/botmaster/temp/
 VOLUME /home/botmaster/certs/
+VOLUME /home/botmaster/mpd1/playlists/

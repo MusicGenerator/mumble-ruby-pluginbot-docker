@@ -22,6 +22,7 @@ You need to specify the volumes:
 "/home/botmaster/music"
 "/home/botmaster/temp"
 "/home/botmaster/certs"
+"/home/botmaster/mpd1/playlists/"
 
 ## Build it
 ```
@@ -35,6 +36,7 @@ You need to specify the volumes:
      -v /somehostfolder/music:/home/botmaster/music \
      -v /somehostfolder/temp:/home/botmaster/temp \
      -v /somehostfolder/certs:/home/botmaster/certs \
+     -v /somehostfolder/playlists:/home/botmaster/mpd1/playlists/ \
      -e MUMBLE_USERNAME="MRPB_Docker_BOT" \
      -e MUMBLE_BITRATE="60000" \
      -e MUMBLE_HOST="m.natenom.com" \

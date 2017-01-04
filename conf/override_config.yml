@@ -3,8 +3,8 @@
 config:
   version: 2.1
 
-:debug: true
-:language: en
+debug: true
+language: en
 
 main:
   ducking: false
