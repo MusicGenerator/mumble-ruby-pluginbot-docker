@@ -1,6 +1,6 @@
-# Ubuntu works, but I prefer Debian :)
-#FROM ubuntu
-FROM debian:jessie
+# Ubuntu has a more recent, less buggy MPD. You still can use Debian if you want to. This dockerfile is compatible with both.
+FROM ubuntu
+#FROM debian:jessie
 
 MAINTAINER Natenom <natenom@natenom.com>
 EXPOSE 7701
