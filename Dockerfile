@@ -5,7 +5,7 @@ FROM ubuntu
 MAINTAINER Natenom <natenom@natenom.com>
 EXPOSE 7701
 
-LABEL version="1.2"
+LABEL version="0.10.0"
 
 ENV MUMBLE_HOST="m.natenom.com"
 ENV MUMBLE_PORT="64738"
