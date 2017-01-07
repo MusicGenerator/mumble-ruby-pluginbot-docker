@@ -83,7 +83,9 @@ RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \
 WORKDIR /home/botmaster/src/
 RUN git clone https://github.com/MusicGenerator/mumble-ruby-pluginbot.git
 WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
-RUN git checkout -b devel origin/devel
+
+# Uncomment the next file if you want to use a bot from the current development branch
+#RUN git checkout -b devel origin/devel
 
 USER root
 ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
