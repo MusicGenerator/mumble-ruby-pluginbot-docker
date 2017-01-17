@@ -19,10 +19,10 @@ See Dockerfile for all variables.
 
 ## Volumes
 You need to specify the volumes:
-"/home/botmaster/music"
-"/home/botmaster/temp"
-"/home/botmaster/certs"
-"/home/botmaster/mpd1/playlists/"
+* "/home/botmaster/music"
+* "/home/botmaster/temp"
+* "/home/botmaster/certs"
+* "/home/botmaster/mpd1/playlists/"
 
 ## Build it
 ```
