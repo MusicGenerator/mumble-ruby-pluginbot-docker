@@ -18,7 +18,7 @@ Use for example "-p 127.0.0.1:7701:7701" to bind it to localhost inside of the h
 See Dockerfile for all variables.
 
 ## Volumes
-You need to specify the volumes:
+You may specify the volumes:
 * "/home/botmaster/music"
 * "/home/botmaster/temp"
 * "/home/botmaster/certs"
