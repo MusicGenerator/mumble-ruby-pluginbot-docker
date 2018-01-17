@@ -1,6 +1,4 @@
-# Ubuntu has a more recent, less buggy MPD. You still can use Debian if you want to. This dockerfile is compatible with both.
 FROM ubuntu
-#FROM debian:jessie
 
 MAINTAINER Natenom <natenom@mailbox.org>
 EXPOSE 7701
@@ -14,9 +12,6 @@ ENV MUMBLE_PASSWORD="supersecretpassword"
 ENV MUMBLE_CHANNEL="Bottest"
 ENV MUMBLE_BITRATE="72000"
 
-# We need extra repositories for lib-av
-RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list.d/nonfree.list
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     apt-get --allow-unauthenticated --no-install-recommends -qy install curl libyaml-dev git libopus-dev \
     build-essential zlib1g zlib1g-dev libssl-dev mpd mpc tmux \
@@ -25,9 +20,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Fix for ubuntu...
-RUN test -f /usr/bin/ffmpeg || ln -s /usr/bin/avconv /usr/bin/ffmpeg
-
 RUN adduser --quiet --disabled-password --uid 1000 --home /home/botmaster --shell /bin/bash botmaster
 
 USER botmaster
@@ -35,8 +27,6 @@ WORKDIR /home/botmaster/
 
 RUN mkdir ~/src
 RUN mkdir ~/logs
-#RUN mkdir ~/src/certs
-#RUN mkdir ~/music
 RUN mkdir ~/temp
 RUN mkdir -p ~/mpd1/playlists
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
