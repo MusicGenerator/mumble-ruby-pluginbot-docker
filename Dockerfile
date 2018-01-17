@@ -89,6 +89,7 @@ WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
 
 USER root
 ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
+RUN chown botmaster: /home/botmaster/startasdocker.sh
 RUN chmod a+x /home/botmaster/startasdocker.sh
 
 USER botmaster
@@ -96,6 +97,9 @@ ADD conf/override_config.yml /home/botmaster/src/bot1_conf.yml
 
 #10 Set up MPD (Music Player Daemon)
 ADD conf/mpd.conf /home/botmaster/mpd1/mpd.conf
+
+USER root
+RUN chown botmaster: /home/botmaster/mpd1/mpd.conf
 #RUN cp ~/src/mumble-ruby-pluginbot/templates/mpd.conf ~/mpd1/mpd.conf
 
 USER botmaster
