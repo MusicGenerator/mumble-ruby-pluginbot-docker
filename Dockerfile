@@ -2,10 +2,10 @@
 FROM ubuntu
 #FROM debian:jessie
 
-MAINTAINER Natenom <natenom@natenom.com>
+MAINTAINER Natenom <natenom@mailbox.org>
 EXPOSE 7701
 
-LABEL version="0.10.0"
+LABEL version="0.10.5"
 
 ENV MUMBLE_HOST="m.natenom.com"
 ENV MUMBLE_PORT="64738"
