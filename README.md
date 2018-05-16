@@ -54,9 +54,6 @@ See conf/override_config.yml which is an override config. That means you only ne
 ## Configure mpd
 See conf/mpd.conf which is the complete configuration file.
 
-## Playlists, state
-The playlists are stored within the container, not in the volumes.
-
 ## Notes
 The Dockerfile is mainly a script made from the documentation you can find at http://mumble-ruby-pluginbot.readthedocs.io/en/master/installation_howto.html.
 
