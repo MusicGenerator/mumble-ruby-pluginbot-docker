@@ -1,11 +1,11 @@
-# Ubuntu has a more recent, less buggy MPD. You still can use Debian if you want to. This dockerfile is compatible with both.
+# Ubuntu has a more recent, less buggy MPD. You still can use Debian if you want to. This dockerfile is(was?) compatible with both.
 FROM ubuntu
 #FROM debian:jessie
 
 MAINTAINER Natenom <natenom@mailbox.org>
 EXPOSE 7701
 
-LABEL version="0.10.5"
+LABEL version="0.10.x"
 
 ENV MUMBLE_HOST="m.natenom.com"
 ENV MUMBLE_PORT="64738"
@@ -15,7 +15,7 @@ ENV MUMBLE_CHANNEL="Bottest"
 ENV MUMBLE_BITRATE="72000"
 
 # We need extra repositories for lib-av
-RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list.d/nonfree.list
+#RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list.d/nonfree.list && \
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     apt-get --allow-unauthenticated --no-install-recommends -qy install curl libyaml-dev git libopus-dev \
@@ -23,74 +23,57 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update;\
     automake autoconf libtool libogg-dev psmisc util-linux libgmp3-dev \
     dialog unzip ca-certificates aria2 imagemagick ffmpeg python gnupg \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    adduser --quiet --disabled-password --uid 1000 --home /home/botmaster --shell /bin/bash botmaster
 
-# Fix for ubuntu...
-RUN test -f /usr/bin/ffmpeg || ln -s /usr/bin/avconv /usr/bin/ffmpeg
-
-RUN adduser --quiet --disabled-password --uid 1000 --home /home/botmaster --shell /bin/bash botmaster
+## Fix for ubuntu...
+##RUN test -f /usr/bin/ffmpeg || ln -s /usr/bin/avconv /usr/bin/ffmpeg
 
 USER botmaster
-WORKDIR /home/botmaster/
-
-RUN mkdir ~/src
-RUN mkdir ~/logs
-#RUN mkdir ~/src/certs
-#RUN mkdir ~/music
-RUN mkdir ~/temp
-RUN mkdir -p ~/mpd1/playlists
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-RUN curl -L https://get.rvm.io | bash -s stable && /bin/bash -c "source ~/.rvm/scripts/rvm && \
-    rvm autolibs disable && rvm install ruby --latest && rvm --create use @bots"
-
-WORKDIR /home/botmaster/src
-RUN git clone https://github.com/dafoxia/mumble-ruby.git mumble-ruby
-WORKDIR /home/botmaster/src/mumble-ruby
-RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \
+RUN cd /home/botmaster/ && mkdir ~/src && mkdir ~/logs && mkdir ~/temp && mkdir -p ~/mpd1/playlists && \
+    /usr/bin/gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ; sleep 3; \
+    /usr/bin/gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ; \
+    curl -L https://get.rvm.io | bash -s stable && /bin/bash -c "source ~/.rvm/scripts/rvm && \
+    rvm autolibs disable && rvm install ruby --latest && rvm --create use @bots" && \
+    cd /home/botmaster/src && git clone https://github.com/dafoxia/mumble-ruby.git mumble-ruby && \
+    cd /home/botmaster/src/mumble-ruby && \
+    /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm use @bots && \
     gem build mumble-ruby.gemspec && \
     rvm @bots do gem install mumble-ruby-*.gem && \
     rvm @bots do gem install ruby-mpd && \
-    rvm @bots do gem install crack"
-
-#7 Download and set up celt-ruby and libcelt
-WORKDIR /home/botmaster/src
-RUN git clone https://github.com/dafoxia/celt-ruby.git
-WORKDIR /home/botmaster/src/celt-ruby
-RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \
+    rvm @bots do gem install crack" && \
+    cd /home/botmaster/src && \
+    git clone https://github.com/dafoxia/celt-ruby.git && \
+    cd /home/botmaster/src/celt-ruby && \
+    /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm use @bots && \
     gem build celt-ruby.gemspec && \
-    rvm @bots do gem install celt-ruby"
-
-WORKDIR /home/botmaster/src
-RUN git clone https://github.com/mumble-voip/celt-0.7.0.git
-WORKDIR /home/botmaster/src/celt-0.7.0
-RUN ./autogen.sh && \
+    rvm @bots do gem install celt-ruby" && \
+    cd /home/botmaster/src && \
+    git clone https://github.com/mumble-voip/celt-0.7.0.git && \
+    cd /home/botmaster/src/celt-0.7.0 && \
+    ./autogen.sh && \
     ./configure --prefix=/home/botmaster/src/celt && \
     make && \
-    make install
-
-#8 Download and set up opus-ruby
-WORKDIR /home/botmaster/src
-RUN git clone https://github.com/dafoxia/opus-ruby.git
-WORKDIR /home/botmaster/src/opus-ruby
-RUN /bin/bash -c "source ~/.rvm/scripts/rvm && \
+    make install && \
+    cd /home/botmaster/src && \
+    git clone https://github.com/dafoxia/opus-ruby.git && \
+    cd /home/botmaster/src/opus-ruby && \
+    /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm use @bots && \
     gem build opus-ruby.gemspec && \
-    rvm @bots do gem install opus-ruby"
-
-#9 Download and set up mumble-ruby-pluginbot
-WORKDIR /home/botmaster/src/
-RUN git clone https://github.com/MusicGenerator/mumble-ruby-pluginbot.git
-WORKDIR /home/botmaster/src/mumble-ruby-pluginbot
+    rvm @bots do gem install opus-ruby" && \
+    cd /home/botmaster/src/ && \
+    git clone https://github.com/MusicGenerator/mumble-ruby-pluginbot.git && \
+    cd /home/botmaster/src/mumble-ruby-pluginbot
 
 # Uncomment the next file if you want to use a bot from the current development branch
 #RUN git checkout -b devel origin/devel
 
 USER root
 ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
-RUN chown botmaster: /home/botmaster/startasdocker.sh
-RUN chmod a+x /home/botmaster/startasdocker.sh
+RUN chown botmaster: /home/botmaster/startasdocker.sh && chmod a+x /home/botmaster/startasdocker.sh
 
 USER botmaster
 ADD conf/override_config.yml /home/botmaster/src/bot1_conf.yml
@@ -103,8 +86,7 @@ RUN chown botmaster: /home/botmaster/mpd1/mpd.conf
 #RUN cp ~/src/mumble-ruby-pluginbot/templates/mpd.conf ~/mpd1/mpd.conf
 
 USER botmaster
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o ~/src/youtube-dl
-RUN chmod u+x ~/src/youtube-dl
+RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o ~/src/youtube-dl && chmod u+x ~/src/youtube-dl
 
 ENTRYPOINT [ "/home/botmaster/startasdocker.sh" ]
 VOLUME /home/botmaster/music/
