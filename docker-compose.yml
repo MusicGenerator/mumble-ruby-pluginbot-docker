@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  bot1:
+    build: .
+    image: mumblerubypluginbot
+    volumes:
+      - /home/mrpb/music:/home/botmaster/music
+      - /home/mrpb/temp:/home/botmaster/temp
+      - /home/mrpb/certs/:/home/botmaster/certs
+      - /home/mrpb/playlists/:/home/botmaster/mpd1/playlists/
+    environment:
+      - MUMBLE_HOST=m.natenom.com
+      - MUMBLE_USERNAME=Bot1_Docker
+      - MUMBLE_CHANNEL=Botzimmer
+      - MUMBLE_BITRATE=128000
+    restart: always
+
+#  bot2:
+#    build: .
+#    image: mumblerubypluginbot
+#    volumes:
+#      - /home/mrpb/music:/home/botmaster/music
+#      - /home/mrpb/temp:/home/botmaster/temp
+#      - /home/mrpb/certs/:/home/botmaster/certs
+#      - /home/mrpb/playlists/:/home/botmaster/mpd1/playlists/
+#    environment:
+#      - MUMBLE_HOST=m.natenom.com
+#      - MUMBLE_USERNAME=Bot2_Docker
+#      - MUMBLE_CHANNEL=Botzimmer
+#      - MUMBLE_BITRATE=128000
+#    restart: always
