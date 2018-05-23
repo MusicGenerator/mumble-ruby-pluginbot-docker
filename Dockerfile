@@ -66,7 +66,8 @@ RUN cd /home/botmaster/ && mkdir ~/src && mkdir ~/logs && mkdir ~/temp && mkdir 
     rvm @bots do gem install opus-ruby" && \
     cd /home/botmaster/src/ && \
     git clone https://github.com/MusicGenerator/mumble-ruby-pluginbot.git && \
-    cd /home/botmaster/src/mumble-ruby-pluginbot
+    cd /home/botmaster/src/mumble-ruby-pluginbot && \
+    rm -rf /home/botmaster/.rvm/src
 
 # Uncomment the next file if you want to use a bot from the current development branch
 #RUN git checkout -b devel origin/devel
