@@ -35,7 +35,7 @@ RUN cd /home/botmaster/ && mkdir ~/src && mkdir ~/logs && mkdir ~/temp && mkdir 
     /usr/bin/gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ; \
     curl -L https://get.rvm.io | bash -s stable && /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm autolibs disable && rvm install ruby --latest && rvm --create use @bots" && \
-    cd /home/botmaster/src && git clone https://github.com/dafoxia/mumble-ruby.git mumble-ruby && \
+    cd /home/botmaster/src && git clone --depth 1 https://github.com/dafoxia/mumble-ruby.git mumble-ruby && \
     cd /home/botmaster/src/mumble-ruby && \
     /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm use @bots && \
@@ -44,35 +44,39 @@ RUN cd /home/botmaster/ && mkdir ~/src && mkdir ~/logs && mkdir ~/temp && mkdir 
     rvm @bots do gem install ruby-mpd && \
     rvm @bots do gem install crack" && \
     cd /home/botmaster/src && \
-    git clone https://github.com/dafoxia/celt-ruby.git && \
+    git clone --depth 1 https://github.com/dafoxia/celt-ruby.git && \
     cd /home/botmaster/src/celt-ruby && \
     /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm use @bots && \
     gem build celt-ruby.gemspec && \
     rvm @bots do gem install celt-ruby" && \
     cd /home/botmaster/src && \
-    git clone https://github.com/mumble-voip/celt-0.7.0.git && \
+    git clone --depth 1 https://github.com/mumble-voip/celt-0.7.0.git && \
     cd /home/botmaster/src/celt-0.7.0 && \
     ./autogen.sh && \
     ./configure --prefix=/home/botmaster/src/celt && \
     make && \
     make install && \
     cd /home/botmaster/src && \
-    git clone https://github.com/dafoxia/opus-ruby.git && \
+    git clone --depth 1 https://github.com/dafoxia/opus-ruby.git && \
     cd /home/botmaster/src/opus-ruby && \
     /bin/bash -c "source ~/.rvm/scripts/rvm && \
     rvm use @bots && \
     gem build opus-ruby.gemspec && \
     rvm @bots do gem install opus-ruby" && \
     cd /home/botmaster/src/ && \
-    git clone https://github.com/MusicGenerator/mumble-ruby-pluginbot.git && \
+    git clone --depth 1 https://github.com/MusicGenerator/mumble-ruby-pluginbot.git && \
     cd /home/botmaster/src/mumble-ruby-pluginbot && \
-    rm -rf /home/botmaster/.rvm/src
+    rm -rf /home/botmaster/.rvm/src && \
+    rm -rf /home/botmaster/src/celt-0.7.0
 
 # Uncomment the next file if you want to use a bot from the current development branch
 #RUN git checkout -b devel origin/devel
 
 USER root
+#RUN DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get remove -qy libyaml-dev git libopus-dev build-essential zlib1g-dev libssl-dev automake autoconf libogg-dev libgmp3-dev && \
+#    /usr/bin/apt-get autoremove -qy
+
 ADD scripts/startasdocker.sh /home/botmaster/startasdocker.sh
 RUN chown botmaster: /home/botmaster/startasdocker.sh && chmod a+x /home/botmaster/startasdocker.sh
 
