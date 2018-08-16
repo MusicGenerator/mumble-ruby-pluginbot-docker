@@ -73,6 +73,28 @@ RUN cd /home/botmaster/ && mkdir ~/src && mkdir ~/logs && mkdir ~/temp && mkdir 
 # Uncomment the next file if you want to use a bot from the current development branch
 #RUN git checkout -b devel origin/devel
 
+
+
+# Section for unsupported third party plugins from https://github.com/Shadowsith/mumble-ruby-pluginbot-plugins
+# Those plugins are not supported by the authors of Mumble-Ruby-Pluginbot in any way. Use them on your own risk.
+# Uncomment the next lines if you want to try them out; all of them.
+
+#USER botmaster
+#RUN cd /home/botmaster/src/ && \
+#    git clone https://github.com/Shadowsith/mumble-ruby-pluginbot-plugins.git && \
+#    cd mumble-ruby-pluginbot-plugins && \
+#    cp -f ./helpers/* /home/botmaster/src/mumble-ruby-pluginbot/helpers/ && \
+#    cp -f ./plugins/* /home/botmaster/src/mumble-ruby-pluginbot/plugins/
+#
+#USER root
+#RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get --allow-unauthenticated --no-install-recommends -qy install mplayer \
+#    && apt-get clean \
+#    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# End of third party plugins section.
+
+
+
 USER root
 #RUN DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get remove -qy libyaml-dev git libopus-dev build-essential zlib1g-dev libssl-dev automake autoconf libogg-dev libgmp3-dev && \
 #    /usr/bin/apt-get autoremove -qy
