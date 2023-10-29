@@ -55,7 +55,7 @@ See conf/override_config.yml which is an override config. That means you only ne
 See conf/mpd.conf which is the complete configuration file.
 
 ## Notes
-The Dockerfile is mainly a script made from the documentation you can find at http://mumble-ruby-pluginbot.readthedocs.io/en/master/installation_howto.html.
+The Dockerfile is mainly a script made from the documentation you can find at https://github.com/MusicGenerator/mumble-ruby-pluginbot-docs/.
 
 ## Docker commands for the bot
 ### Watching the log
